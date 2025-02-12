@@ -42,15 +42,23 @@
             img.crossOrigin = "anonymous"; // Avoid CORS issues
 
             img.onload = function () {
+                // Set canvas size to match image dimensions
                 canvas.width = img.width;
                 canvas.height = img.height;
                 ctx.drawImage(img, 0, 0);
 
                 // Set text properties
-                ctx.font = "40px Arial";
+                ctx.font = "40px Arial"; // Adjusted text size
                 ctx.fillStyle = "black";
                 ctx.textAlign = "center";
-                ctx.fillText(name, canvas.width / 2, canvas.height * 0.2); // Adjust position
+                ctx.textBaseline = "top"; // Align text to the top
+
+                // Calculate text position
+                const textX = canvas.width / 2;
+                const textY = canvas.height * 0.1; // Adjusted vertical position
+
+                // Draw text on the image
+                ctx.fillText(name, textX, textY);
 
                 // Show the download button
                 const downloadLink = document.getElementById("downloadLink");
